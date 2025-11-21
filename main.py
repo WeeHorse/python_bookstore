@@ -2,7 +2,7 @@ from Admin import Admin
 from Author import Author
 from Book import Book
 from Bookstore import Bookstore
-from Cart import Cart
+from ShoppingCart import ShoppingCart
 from Category import Category
 from Customer import Customer
 
@@ -49,24 +49,24 @@ def main():
     print(admin.name, admin)
 
     # lets create a customer object (with a cart)
-    customer_ben = Customer("Benjamin", "ben@node.com", "abc123", Cart())
+    customer_ben = Customer("Benjamin", "ben@node.com", "abc123", ShoppingCart())
     print(customer_ben.name, customer_ben)
 
     # and another
-    customer_bob = Customer("Robert", "bob@mail.com", "def345", Cart())
+    customer_bob = Customer("Robert", "bob@mail.com", "def345", ShoppingCart())
     print(customer_bob.name, customer_bob)
 
     # let ben buy a book
-    customer_ben.cart.add_item(book_normal_people)
+    customer_ben.cart.add_book(book_normal_people)
 
     # let bob by a book
-    customer_bob.cart.add_item(book_conversations_with_friends)
+    customer_bob.cart.add_book(book_conversations_with_friends)
     # and another
-    customer_bob.cart.add_item(book_normal_people)
+    customer_bob.cart.add_book(book_normal_people)
 
     # now ben should have one book (normal people) and bob should have two (normal people + conversations)
-    print(customer_ben.name, customer_ben.cart.list_items())
-    print(customer_bob.name, customer_bob.cart.list_items())
+    print(customer_ben.name, customer_ben.cart.get_books())
+    print(customer_bob.name, customer_bob.cart.get_books())
 
 if __name__ == '__main__':
     main()
