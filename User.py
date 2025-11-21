@@ -2,6 +2,8 @@
 # abstract
 class User:
     def __init__(self, name, email, password):
-        pass
+        self.name = name
+        self.email = email
+        self.password = password
 
 

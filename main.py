@@ -1,7 +1,10 @@
+from Admin import Admin
 from Author import Author
 from Book import Book
 from Bookstore import Bookstore
+from Cart import Cart
 from Category import Category
+from Customer import Customer
 
 def main():
     bookstore = Bookstore()
@@ -40,6 +43,30 @@ def main():
 
     # see the __repr__ method print out Sally rooney and her books:
     print(author_sally_rooney)
+
+    # lets create an admin
+    admin = Admin("Clerky clerk", "admin@bookstore.com", "aaa111");
+    print(admin.name, admin)
+
+    # lets create a customer object (with a cart)
+    customer_ben = Customer("Benjamin", "ben@node.com", "abc123", Cart())
+    print(customer_ben.name, customer_ben)
+
+    # and another
+    customer_bob = Customer("Robert", "bob@mail.com", "def345", Cart())
+    print(customer_bob.name, customer_bob)
+
+    # let ben buy a book
+    customer_ben.cart.add_item(book_normal_people)
+
+    # let bob by a book
+    customer_bob.cart.add_item(book_conversations_with_friends)
+    # and another
+    customer_bob.cart.add_item(book_normal_people)
+
+    # now ben should have one book (normal people) and bob should have two (normal people + conversations)
+    print(customer_ben.name, customer_ben.cart.list_items())
+    print(customer_bob.name, customer_bob.cart.list_items())
 
 if __name__ == '__main__':
     main()
